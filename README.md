@@ -1,24 +1,15 @@
+Certainly! Here's the updated README with the `params_scope` explanation merged:
+
+```markdown
 # Multi-Core Genetic Algorithm Optimizer
 
 This project implements a multi-core genetic algorithm optimizer for searching the best parameters for trading signals. The optimizer is designed to run in parallel using multiple CPU cores to speed up the search process.
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Files](#files)
-- [License](#license)
-
-## Installation
-
-To install the necessary dependencies, run:
-
-```bash
-pip install pandas
-```
-
-Ensure you have the `optimizer` module available in your Python environment. If it is a custom module, make sure it is in the Python path.
+- [Parameter Scope](#parameter-scope)
 
 ## Configuration
 
@@ -101,14 +92,53 @@ You can adjust these parameters according to your requirements.
 
 This will execute the search process, print the best found parameters and their fitness scores, and save them to CSV files.
 
-## Files
+## Parameter Scope
 
-- `optimizer.py`: Contains the implementation of the genetic algorithm optimizer.
-- `main.py`: The main script to run the multi-core search.
+The `params_scope` is a crucial component of the genetic algorithm optimizer, defining the parameters that will be optimized. Each parameter is described in a tuple consisting of the parameter name, the type of search space, and the search arguments. This allows the optimizer to understand how to generate and mutate individuals during the optimization process.
 
-## License
+### Defining the `params_scope`
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The `params_scope` is a list of tuples, where each tuple defines a parameter to be optimized. Each tuple has the following structure:
+
+```python
+(param_name, search_type, search_arg)
 ```
 
-Feel free to adjust the content as needed to better fit your project specifics.
+- `param_name`: The name of the parameter.
+- `search_type`: The type of the search space, which can be `'int'`, `'float'`, or `'category'`.
+- `search_arg`: The arguments defining the search space. This varies depending on the `search_type`.
+
+### Example
+
+Here is an example `params_scope`:
+
+```python
+params_scope = [
+    ('param1', 'category', ['c1', 'c2', 'c3']),  # Categorical parameter
+    ('param2', 'int', [1, 100]),  # Integer parameter with bounds [1, 100]
+    ('param3', 'float', [0.0, 1.0]),  # Float parameter with bounds [0.0, 1.0]
+]
+```
+
+### Detailed Description
+
+1. **Categorical Parameter**:
+    - Defined as: `('param1', 'category', ['c1', 'c2', 'c3'])`
+    - The parameter `param1` can take on one of the values in the list `['c1', 'c2', 'c3']`.
+    - During mutation, if the mutation condition is met (random number < `mutation_rate`), `param1` will be assigned a new value randomly chosen from `['c1', 'c2', 'c3']`.
+
+2. **Integer Parameter**:
+    - Defined as: `('param2', 'int', [1, 100])`
+    - The parameter `param2` is an integer within the bounds `[1, 100]`.
+    - During mutation, if the mutation condition is met, `param2` will be assigned a new integer value randomly chosen between 1 and 100 (inclusive).
+
+3. **Float Parameter**:
+    - Defined as: `('param3', 'float', [0.0, 1.0])`
+    - The parameter `param3` is a float within the bounds `[0.0, 1.0]`.
+    - During mutation, if the mutation condition is met, `param3` will be assigned a new float value randomly chosen between 0.0 and 1.0.
+
+### Customizing `params_scope`
+
+You can customize the `params_scope` according to the specific parameters you want to optimize. Ensure each parameter is appropriately defined with its name, type, and the corresponding search space arguments. This allows the optimizer to effectively explore the parameter space and find the best-performing parameters for your trading signals or other optimization tasks.
+
+By understanding and correctly defining the `params_scope`, you can leverage the full potential of the genetic algorithm optimizer to enhance your trading strategies or any other parameter optimization problems.
