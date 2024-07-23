@@ -21,7 +21,6 @@ SEARCH_CONFIG = {
         'generations': 5,  # Number of generations to evolve
         'mutation_rate': 0.05,  # Mutation rate for the genetic algorithm
         'if_print': True,  # Whether to print progress
-        'search_threshold': 0.3,  # Fitness threshold to stop the search
     },
 }
 ```

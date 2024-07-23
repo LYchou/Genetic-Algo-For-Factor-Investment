@@ -11,7 +11,6 @@ SEARCH_CONFIG = {
         'generations': 5,  # Number of generations to evolve
         'mutation_rate': 0.05,  # Mutation rate for the genetic algorithm
         'if_print': True,  # Whether to print progress
-        'search_threshold': 0.3,  # Fitness threshold to stop the search
     },
 }
 
@@ -93,7 +92,7 @@ class MultiCoreSearch(optimizer.MultiCoreSearch):
         optimizer.mutation_rate = config['mutation_rate']
         optimizer.if_print = config['if_print']
         optimizer.print_title = f'Search Index {index}:'
-        result = optimizer.search(threshold=config['search_threshold'])
+        result = optimizer.search()
         return result
 
 if __name__ == '__main__':
