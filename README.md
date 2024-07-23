@@ -1,6 +1,3 @@
-Certainly! Here's the updated README with the `params_scope` explanation merged:
-
-```markdown
 # Multi-Core Genetic Algorithm Optimizer
 
 This project implements a multi-core genetic algorithm optimizer for searching the best parameters for trading signals. The optimizer is designed to run in parallel using multiple CPU cores to speed up the search process.
