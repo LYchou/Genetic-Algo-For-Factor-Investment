@@ -25,11 +25,11 @@ SEARCH_CONFIG = {
 }
 ```
 
-You can adjust these parameters according to your requirements.
+Adjust these parameters according to your requirements.
 
 ## Usage
 
-1. Define your parameter space in the `params_scope` list:
+1. **Define Your Parameter Space:**
 
     ```python
     params_scope = [
@@ -39,7 +39,7 @@ You can adjust these parameters according to your requirements.
     ]
     ```
 
-2. Implement the `signal_func` and `backtest` functions:
+2. **Implement the `signal_func` and `backtest` Functions:**
 
     ```python
     def signal_func(**params):
@@ -51,7 +51,7 @@ You can adjust these parameters according to your requirements.
         return
     ```
 
-3. Implement the `evaluate_fitness` function:
+3. **Implement the `evaluate_fitness` Function:**
 
     ```python
     def evaluate_fitness(params):
@@ -60,7 +60,7 @@ You can adjust these parameters according to your requirements.
         return fitness
     ```
 
-4. Run the optimizer:
+4. **Run the Optimizer:**
 
     ```python
     if __name__ == '__main__':
@@ -71,7 +71,7 @@ You can adjust these parameters according to your requirements.
 
         best_ind_list = []
         best_fitness_list = []
-        
+
         for best_ind, best_fitness in results:
             print('-'*40)
             print(best_ind)
@@ -86,11 +86,11 @@ You can adjust these parameters according to your requirements.
         pd.DataFrame(best_fitness_list).to_csv(f'{now}fitness.csv', index=False)
     ```
 
-This will execute the search process, print the best found parameters and their fitness scores, and save them to CSV files.
+This will execute the search process, print the best-found parameters and their fitness scores, and save them to CSV files.
 
 ## Parameter Scope
 
-The `params_scope` is a crucial component of the genetic algorithm optimizer, defining the parameters that will be optimized. Each parameter is described in a tuple consisting of the parameter name, the type of search space, and the search arguments. This allows the optimizer to understand how to generate and mutate individuals during the optimization process.
+The `params_scope` is a crucial component of the genetic algorithm optimizer, defining the parameters to be optimized. Each parameter is described in a tuple consisting of the parameter name, the type of search space, and the search arguments. This allows the optimizer to understand how to generate and mutate individuals during the optimization process.
 
 ### Defining the `params_scope`
 
@@ -102,7 +102,7 @@ The `params_scope` is a list of tuples, where each tuple defines a parameter to 
 
 - `param_name`: The name of the parameter.
 - `search_type`: The type of the search space, which can be `'int'`, `'float'`, or `'category'`.
-- `search_arg`: The arguments defining the search space. This varies depending on the `search_type`.
+- `search_arg`: The arguments defining the search space, which vary depending on the `search_type`.
 
 ### Example
 
